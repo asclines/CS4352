@@ -3,9 +3,11 @@
 
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CPU Util</title>
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.9.2/math.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
         <script src="https://wzrd.in/standalone/function-plot@1.14.0"></script>
@@ -16,13 +18,25 @@
 
         <script src="cpu.js"></script>
         <link rel="stylesheet" href="cpu.css">
-
-
-
-
     </head>
 
     <body>
+      <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+              inlineMath: [['$','$'], ['\\(','\\)']]
+            },
+            "HTML-CSS": { scale: 100, linebreaks: { automatic: true } },
+            CommonHTML: { scale: 100, linebreaks: { automatic: true } },
+            SVG: { linebreaks: { automatic:true } },
+            displayAlign: "left"
+          });
+      </script>
+
+      <h2> CPU Utilization Calculator</h2>
+      <p>
+        Formula used: $ C = 1 - P^N $
+      </p>
 
 
         <form id="form">
@@ -38,9 +52,6 @@
                 <input class="mdl-textfield__input" type="number" max="1" step="0.001" id="iotime">
                 <label class="mdl-textfield__label" for="iottime">IO Wait (P) </label>
             </div>
-
-
-
 
             <br />
             <button type="submit" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">
