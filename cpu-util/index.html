@@ -6,6 +6,9 @@
         <title>CPU Util</title>
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/3.9.2/math.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script src="https://wzrd.in/standalone/function-plot@1.14.0"></script>
 
         <script src="cpu.js"></script>
 
@@ -13,29 +16,55 @@
     </head>
 
     <body>
+
+
+        <form id="form">
+            <label for="cpuUtil">CPU Util (C)</label>
+            <input type="text" id="cpuUtil">
+
+            <label for="processNumber">Process Number (N)</label>
+            <input type="text" id="processNumber">
+
+            <label for="iottime">IO Wait (P) </label>
+            <input type="text" id="iotime">
+
+            <input type="submit" value="Calc" />
+        </form>
+
+        <div id="plot"></div>
+
         <script>
-            $(document).ready(function() {
-                $('#showMath').click(function() {
-                    console.log("hello");
-                    cpuUtil(
-                      $('#cpuUtil').val(),
-                      $('#iotime').val(), $
-                      ('#processNumber').val()
-                    );
-                });
+            function calc() {
+                console.log("Calculating!");
+                cpuUtil(
+                    $('#cpuUtil').val(),
+                    $('#iotime').val(), $('#processNumber').val()
+                );
 
-            });
+                console.log(`CPU = (1- ${$('#iotime').val()} ^ N)`);
+                try {
+                    functionPlot({
+                        target: '#plot',
+                        xDomain: [0,10],
+                        yDomain: [0,1],
+                        data: [{
+                            fn: `y=(1- ${$('#iotime').val()} ^ x)`,
+                            sampler: 'builtIn', // this will make function-plot use the evaluator of math.js
+                            graphType: 'polyline'
+                        }]
+                    });
+                } catch (err) {
+                    console.log(err);
+                    alert(err);
+                }
+            }
+
+
+            document.getElementById('form').onsubmit = function(event) {
+                event.preventDefault();
+                calc();
+            };
         </script>
-        <label>CPU Util (C) <input type="text" id="cpuUtil"></label> <br />
-        <label>Process Number (N) <input type="text" id="processNumber"></label> <br />
-        <label>IO Wait (P) <input type="text" id="iotime"></label> <br />
-        <br />
-
-
-        <button id="showMath">
-        Calc
-      </button>
-
 
     </body>
 
