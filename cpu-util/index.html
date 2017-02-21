@@ -67,12 +67,17 @@
                 mdlCleanUp();
 
                 console.log(`CPU = (1- ${$('#iotime').val()} ^ N)`);
+                var ydimm = 2*$(window).height()/3;
+                var xdimm = 2*$(window).width()/3;
+
                 try {
                     functionPlot({
                         target: '#plot',
                         disableZoom: true,
                         xDomain: [0, 10],
                         yDomain: [0, 1],
+                        height: ydimm,
+                        width: xdimm,
                         data: [{
                                 fn: `y=(1- ${$('#iotime').val()} ^ x)`,
                                 sampler: 'builtIn', // this will make function-plot use the evaluator of math.js
