@@ -7,6 +7,6 @@ function cpuUtil(c, p, n){
     document.getElementById("iotime").value = Math.pow((1-c),(1/n))
   } else if(!n){
     console.log("Calc N");
-    document.getElementById("processNumber").value = Math.log(1-c)/Math.log(p);
+    document.getElementById("processNumber").value = Math.ceil(Math.log(1-c)/Math.log(p));
   }
 }
