@@ -29,7 +29,7 @@
 
         <h2> CPU Utilization Calculator</h2>
         <p id="formula">
-            Formula used: $ C = 1 - P^N $
+            Formula used: <img src="formula.png" />
             <br />
             Note: Values are rounded to 3 decimal places.
         </p>
@@ -54,6 +54,7 @@
               Calculate
             </button>
         </form>
+        <br />
 
         <div id="plot"></div>
 
@@ -75,7 +76,7 @@
                         target: '#plot',
                         disableZoom: true,
                         xDomain: [0, 10],
-                        yDomain: [0, 1],
+                        yDomain: [0, 1.2],
                         height: ydimm,
                         width: xdimm,
                         data: [{
