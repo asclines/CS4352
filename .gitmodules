@@ -1,0 +1,3 @@
+[submodule "cpu-util/function-plot"]
+	path = cpu-util/function-plot
+	url = git@github.com:asclines/function-plot.git
